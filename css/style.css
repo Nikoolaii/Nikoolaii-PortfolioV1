@@ -27,9 +27,15 @@ p {
 }
 
 .bodyaccueil {
-    background-image: url("../img/python-programming-syntax-4k-1s-1920x1080.jpg");
+    background-image: url("../img/firos-nv-Z2c6ounF-iE-unsplash.jpg");
     font-family: 'Poppins', sans-serif;
     opacity: 0.8;
+    background-attachment:fixed;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    overflow-x : hidden;
+    overflow-y : hidden;
+    
 }
 
 @keyframes showTopText {
