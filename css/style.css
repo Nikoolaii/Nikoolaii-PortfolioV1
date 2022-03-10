@@ -1,18 +1,22 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 .body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #e5e5f7;
-    opacity: 0.8;
-    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #e5e5f7 10px ), repeating-linear-gradient( #8ea6c755, #8ea6c7 );
+  font-family: "Poppins", sans-serif;
+  background-color: #e5e5f7;
+  opacity: 0.8;
+  background-image: repeating-radial-gradient(
+      circle at 0 0,
+      transparent 0,
+      #e5e5f7 10px
+    ),
+    repeating-linear-gradient(#8ea6c755, #8ea6c7);
 }
 
-
 p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.1em;
-    font-weight: 300;
-    line-height: 1.7em;
-    color: #999;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1em;
+  font-weight: 300;
+  line-height: 1.7em;
+  color: #999;
 }
 
 /* ---------------------------------------------------
@@ -20,42 +24,53 @@ p {
 ----------------------------------------------------- */
 
 #content {
-    width: 100%;
-    padding: 20px;
-    min-height: 100vh;
-    transition: all 0.3s;
+  width: 100%;
+  padding: 20px;
+  min-height: 100vh;
+  transition: all 0.3s;
 }
 
 .bodyaccueil {
-    background-image: url("../img/firos-nv-Z2c6ounF-iE-unsplash.jpg");
-    font-family: 'Poppins', sans-serif;
-    opacity: 0.8;
-    background-attachment:fixed;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    overflow-x : hidden;
-    overflow-y : hidden;
-    
+  background-image: url("../img/wp2234604.jpg");
+  font-family: "Poppins", sans-serif;
+  opacity: 0.8;
+  background-attachment: fixed;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 @keyframes showTopText {
-  0% { transform: translate3d(0, 100%, 0); }
-  40%, 60% { transform: translate3d(0, 50%, 0); }
-  100% { transform: translate3d(0, 0, 0); }
+  0% {
+    transform: translate3d(0, 100%, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(0, 50%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
 }
 @keyframes showBottomText {
-  0% { transform: translate3d(0, -100%, 0); }
-  100% { transform: translate3d(0, 0, 0); }
+  0% {
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
 }
 .animated-title {
-  color: #B0F2B6;
-  font-family: 'Poppins', sans-serif;
+  color: #b0f2b6;
+  font-family: "Poppins", sans-serif;
   height: 90vmin;
   left: 50%;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
   width: 90vmin;
+  margin-top: 60px;
 }
 .animated-title > div {
   height: 50%;
@@ -72,7 +87,7 @@ p {
   display: block;
 }
 .animated-title > div.text-top {
-  border-bottom: 1vmin solid #22427C;
+  border-bottom: 1vmin solid #22427c;
   top: 0;
 }
 .animated-title > div.text-top div {
@@ -83,7 +98,7 @@ p {
   transform: translate(0, 100%);
 }
 .animated-title > div.text-top div span:first-child {
-  color: #22427C;
+  color: #22427c;
 }
 .animated-title > div.text-bottom {
   bottom: 0;
