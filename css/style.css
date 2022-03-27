@@ -110,3 +110,47 @@ p {
   top: 0;
   transform: translate(0, -100%);
 }
+
+.color li {
+  background-color: white !important;
+}
+
+.titre {
+  color: orangered;
+  text-align: center;
+  margin: 20px;
+}
+
+.presentationglobale {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  width: 80%;
+  padding: 10px;
+}
+
+.titrepresentation {
+  color: orange;
+  text-align: center;
+  margin: 20px;
+}
+
+.optionA {
+  float: left;
+  background-color: white;
+  width: 40%;
+  padding: 10px;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  margin: 0 20px 0 120px;
+}
+
+.optionB {
+  float: left;
+  background-color: white;
+  width: 40%;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.5);
+}
