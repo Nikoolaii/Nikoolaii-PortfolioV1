@@ -22,3 +22,7 @@ p {
 .color li {
   background-color: white !important;
 }
+
+.container {
+  font-family: "Poppins", sans-serif; 
+}
