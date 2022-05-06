@@ -21,7 +21,7 @@
     box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     padding: 2%;  
-    margin: 0 0 0 70px;
+    margin: 0 20px 0 70px;
   }
   
   .optionB {
@@ -31,13 +31,13 @@
     border-radius: 10px;
     box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.5);
     padding: 2%; 
-    margin: 0 70px;
+    margin: 0 70px 20px 0;
   }
 
   .titre {
     color: orangered;
     text-align: center;
-    margin: 20px;
+    margin: 2px;
   }
   
   .firstdiv {
