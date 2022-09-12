@@ -17,3 +17,14 @@
   width: 80%;
   padding: 20px;
 }
+
+svg.svg-inline--fa.fa-linkedin.text-primary,
+svg.svg-inline--fa.fa-github.text-primary,
+svg.svg-inline--fa.fa-envelope.text-primary {
+  height: 25;
+}
+
+.divcontact > p {
+  color: red;
+  p
+}
