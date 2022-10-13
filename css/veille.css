@@ -1,0 +1,18 @@
+.maindiv {
+  text-align: center;
+}
+
+table,
+tr,
+td {
+  border: 1px solid #333;
+  padding: 10px;
+}
+
+th {
+  text-align: center;
+}
+
+table {
+  margin: 5px 10px 0 10px;
+}

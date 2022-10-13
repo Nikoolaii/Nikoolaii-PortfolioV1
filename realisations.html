@@ -10,7 +10,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/presentation.css" />
+    <link rel="stylesheet" href="css/realisation.css" />
     <link rel="icon" href="img/logo.ico" />
 
     <title>Lemerre Nikolaï - Portfolio</title>
@@ -64,11 +64,6 @@
             </div>
           </div>
           <li class="nav-item">
-            <a href="presentation.html" class="nav-link"
-              >Présentation</a
-            >
-          </li>
-          <li class="nav-item">
             <a href="contact.html" class="nav-link">Contact</a>
           </li>
         </ul>
@@ -76,6 +71,37 @@
     </div>
 
     <div class="maindiv">
-        </div>
+      <h3>Réalisation effectué en classe</h3>
+      <div class="real" id="myModal">
+        <h3>Resto'rat</h3>
+        <p>Resto'rat est un projet de site pour un restaurant, l'objectif était de réaliser un site pour un restaurant avec un système de réservation et un panel administrateur pour gérer les reservations.</p>
+        <img src="img/restorat.png" alt="ImageRestorat" class="imagereal modal-content" id="img01">
+        <p class="utilise">Technologie : HTML, PHP, CSS, MySQL</p>
+      </div>
+    </div>
     </body>
+
+    <script>
+      // Get the modal
+      var modal = document.getElementById("myModal");
+
+      // Get the image and insert it inside the modal - use its "alt" text as a caption
+      var img = document.getElementById("myImg");
+      var modalImg = document.getElementById("img01");
+      var captionText = document.getElementById("caption");
+      img.onclick = function () {
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        modalImg.alt = this.alt;
+      };
+
+      // When the user clicks on <span> (x), close the modal
+      modal.onclick = function () {
+        img01.className += " out";
+        setTimeout(function () {
+          modal.style.display = "none";
+          img01.className = "modal-content";
+        }, 400);
+      };
+    </script>
 </html>
