@@ -2,6 +2,7 @@
   width: 100%;
   min-height: 100vh;
   transition: all 0.3s;
+  margin-top: 2%;
   text-align: center;
 }
 
@@ -16,6 +17,13 @@ body {
   border: 1em black;
 }
 
-.text-presentation {
-  margin: 0 100px 0 100px;
+.parcours {
+  text-align: center;
+  color: purple;
+  margin-left: 20px;
+  margin-top: -20px;
+}
+
+.textparcours {
+  color: black;
 }
