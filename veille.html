@@ -1,173 +1,307 @@
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/veille.css" />
-    <link rel="icon" href="img/logo.ico" />
+    <link href="./css/output.css" rel="stylesheet" />
+    <link rel="icon" href="assets/logo.ico" />
 
     <title>Lemerre Nikolaï - Portfolio</title>
   </head>
-  <body>
-    <!-- Adding bootstrap JS -->
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
-
+  <body class="bg-slate-200">
     <!-- Navbar -->
-    <div class="container">
-      <header class="d-flex justify-content-center py-3">
-        <ul class="nav nav-pills">
-          <li class="nav-item">
-            <a href="index.html" class="nav-link">Accueil</a>
-          </li>
-          <li class="nav-item">
-            <a href="competences.html" class="nav-link">Compétences</a>
-          </li>
-          <li class="nav-item">
-            <a href="realisations.html" class="nav-link">Réalisations</a>
-          </li>
-          <li class="nav-item">
-            <a href="veille.html" class="nav-link active color">Veille</a>
-          </li>
-          <div class="dropdown">
+    <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
+      <div
+        class="container flex flex-wrap items-center justify-between mx-auto"
+      >
+        <a href="index.html" class="flex items-center">
+          <img
+            src="assets/logo.png"
+            class="h-6 mr-3 sm:h-9"
+            alt="Nikolaï logo"
+          />
+          <span class="self-center text-xl font-semibold whitespace-nowrap"
+            >Lemerre Nikolaï</span
+          >
+        </a>
+        <button
+          data-collapse-toggle="navbar-default"
+          type="button"
+          class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+          aria-controls="navbar-default"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Open main menu</span>
+          <svg
+            class="w-6 h-6"
+            aria-hidden="true"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </button>
+        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+          <ul
+            class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white"
+          >
+            <li>
+              <a
+                href="index.html"
+                class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                >Accueil</a
+              >
+            </li>
+            <li>
+              <a
+                href="presentation.html"
+                class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                >Présentation</a
+              >
+            </li>
+            <li>
+              <a
+                href="competence.html"
+                class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                >Compétences</a
+              >
+            </li>
+            <li>
+              <a
+                href="realisation.html"
+                class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                >Réalisations</a
+              >
+            </li>
+            <li>
+              <a
+                href="veille.html"
+                class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0"
+                aria-current="page"
+                >Veille</a
+              >
+            </li>
+            <li>
+              <a
+                href="formation.html"
+                class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                >Formation</a
+              >
+            </li>
+            <li>
+              <a
+                href="contact.html"
+                class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="flex flex-row mt-20 justify-center items-center">
+      <div
+        class="w-full max-w-4xl p-4 bg-white border rounded-lg shadow-md sm:p-8 mb-12"
+      >
+        <h5 class="text-4xl font-bold leading-none text-gray-900">
+          Thème de la veille : La sécurité Prestashop
+        </h5>
+        <br />
+
+        <div class="relative overflow-x-auto border rounded-lg">
+          <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-3">Outils</th>
+                <th scope="col" class="px-6 py-3">Avantages</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-slate-200 border-b">
+                <th
+                  scope="row"
+                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                >
+                  Feedly
+                </th>
+                <td class="px-6 py-4">
+                  Feedly est un outil qui permet de s’abonner à des flux RSS et
+                  de recevoir automatiquement des contenus provenant d’autres
+                  sites web, qu’il s’agisse d’un journal ou d’un article de
+                  blog. Ainsi, l’utilisateur s’abonne aux sources d’information
+                  désirées et peut effectuer une veille sur un secteur
+                  d’activité en particulier, que cela soit pour s’informer,
+                  affiner ses connaissances dans un domaine, ou encore
+                  surveiller la concurrence.
+                </td>
+              </tr>
+              <tr class="bg-slate-200 border-b">
+                <th
+                  scope="row"
+                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                >
+                  Google alerts
+                </th>
+                <td class="px-6 py-4">
+                  Google Alerts ou Google Alertes est un service qui envoie un
+                  courriel ou une alerte lorsqu'une nouvelle page web
+                  correspondant aux mots-clés que l'on a choisis, apparaît dans
+                  les résultats Google.
+                </td>
+              </tr>
+              <tr class="bg-slate-200">
+                <th
+                  scope="row"
+                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                >
+                  Google actualité
+                </th>
+                <td class="px-6 py-4">
+                  Le meilleur moyen de se tenir à l'actualité selon moi, il
+                  suffit simplement de taper le nom du sujet sur lequel on veut
+                  des informations sur google et de cliquer sur l'onglet
+                  actualités.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <br />
+        <div class="flex flex-row flex-wrap justify-center items-center">
+          <div
+            class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md ml-3 basis-1/2"
+          >
+            <a href="#">
+              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+                Noteworthy technology acquisitions 2021
+              </h5>
+            </a>
+            <p class="mb-3 font-normal text-gray-700">
+              Here are the biggest enterprise technology acquisitions of 2021 so
+              far, in reverse chronological order.
+            </p>
             <a
-              class="nav-link dropdown-toggle"
               href="#"
-              role="button"
-              id="deroulant"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              >Stages</a
+              class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
             >
-            <div class="dropdown-menu" aria-labelledby="deroulanta">
-              <a class="dropdown-item" href="stage/premiere.html"
-                >Première année</a
+              Read more
+              <svg
+                aria-hidden="true"
+                class="w-4 h-4 ml-2 -mr-1"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
               >
-              <a class="dropdown-item" href="stage/deuxieme.html"
-                >Deuxième année</a
-              >
-            </div>
+                <path
+                  fill-rule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </a>
           </div>
-          <li class="nav-item">
-            <a href="contact.html" class="nav-link">Contact</a>
-          </li>
-        </ul>
-      </header>
-    </div>
-    <div class="maindiv">
-      <h3>Thème de la veille : La sécurité Prestashop</h3>
-      <table>
-        <thead>
-          <tr>
-            <th colspan="2">Les outils utilisés</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Feedly</td>
-            <td>
-              Feedly est un outil qui permet de s’abonner à des flux RSS et de
-              recevoir automatiquement des contenus provenant d’autres sites
-              web, qu’il s’agisse d’un journal ou d’un article de blog. Ainsi,
-              l’utilisateur s’abonne aux sources d’information désirées et peut
-              effectuer une veille sur un secteur d’activité en particulier, que
-              cela soit pour s’informer, affiner ses connaissances dans un
-              domaine, ou encore surveiller la concurrence.
-            </td>
-          </tr>
-          <tr>
-            <td>Google alerts</td>
-            <td>
-              Google Alerts ou Google Alertes est un service qui envoie un
-              courriel ou une alerte lorsqu'une nouvelle page web correspondant
-              aux mots-clés que l'on a choisis, apparaît dans les résultats
-              Google.
-            </td>
-          </tr>
-          <tr>
-            <td>Google actualité</td>
-            <td>
-              Le meilleur moyen de se tenir à l'actualité selon moi, il suffit
-              simplement de taper le nom du sujet sur lequel on veut des
-              informations sur google et de cliquer sur l'onglet actualités.
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="newsflex">
-        <div class="news">
-          <h3>Article 1</h3>
-          <img
-            src="https://i.ytimg.com/vi/uSnNUJ6_kxE/maxresdefault.jpg"
-            alt="Loading"
-          />
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam
-            debitis quae nemo repellendus cupiditate maiores nesciunt, veritatis
-            voluptate doloribus in.
-          </p>
-          <a href="#" class="lien">Lien vers l'article</a>
-        </div>
-        <div class="news">
-          <h3>Article 2</h3>
-          <img
-            src="https://i.ytimg.com/vi/uSnNUJ6_kxE/maxresdefault.jpg"
-            alt="Loading"
-          />
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam
-            debitis quae nemo repellendus cupiditate maiores nesciunt, veritatis
-            voluptate doloribus in.
-          </p>
-          <a href="#" class="lien">Lien vers l'article</a>
-        </div>
-        <div class="news">
-          <h3>Article 3</h3>
-          <img
-            src="https://i.ytimg.com/vi/uSnNUJ6_kxE/maxresdefault.jpg"
-            alt="Loading"
-          />
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam
-            debitis quae nemo repellendus cupiditate maiores nesciunt, veritatis
-            voluptate doloribus in.
-          </p>
-          <a href="#" class="lien">Lien vers l'article</a>
-        </div>
-        <div class="news">
-          <h3>Article 4</h3>
-          <img
-            src="https://i.ytimg.com/vi/uSnNUJ6_kxE/maxresdefault.jpg"
-            alt="Loading"
-          />
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam
-            debitis quae nemo repellendus cupiditate maiores nesciunt, veritatis
-            voluptate doloribus in.
-          </p>
-          <a href="#" class="lien">Lien vers l'article</a>
+          <div
+            class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md ml-3 basis-1/2"
+          >
+            <a href="#">
+              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+                Noteworthy technology acquisitions 2021
+              </h5>
+            </a>
+            <p class="mb-3 font-normal text-gray-700">
+              Here are the biggest enterprise technology acquisitions of 2021 so
+              far, in reverse chronological order.
+            </p>
+            <a
+              href="#"
+              class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+            >
+              Read more
+              <svg
+                aria-hidden="true"
+                class="w-4 h-4 ml-2 -mr-1"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </a>
+          </div>
+          <br />
+          <div
+            class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md ml-3 basis-1/2"
+          >
+            <a href="#">
+              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+                Noteworthy technology acquisitions 2021
+              </h5>
+            </a>
+            <p class="mb-3 font-normal text-gray-700">
+              Here are the biggest enterprise technology acquisitions of 2021 so
+              far, in reverse chronological order.
+            </p>
+            <a
+              href="#"
+              class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+            >
+              Read more
+              <svg
+                aria-hidden="true"
+                class="w-4 h-4 ml-2 -mr-1"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </a>
+          </div>
+          <div
+            class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md ml-3 basis-1/2"
+          >
+            <a href="#">
+              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+                Noteworthy technology acquisitions 2021
+              </h5>
+            </a>
+            <p class="mb-3 font-normal text-gray-700">
+              Here are the biggest enterprise technology acquisitions of 2021 so
+              far, in reverse chronological order.
+            </p>
+            <a
+              href="#"
+              class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+            >
+              Read more
+              <svg
+                aria-hidden="true"
+                class="w-4 h-4 ml-2 -mr-1"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </div>

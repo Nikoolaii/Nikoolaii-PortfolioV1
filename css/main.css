@@ -1,23 +1,4 @@
-@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-body {
-  font-family: "Poppins", sans-serif;
-  background-color: #e5e5f7;
-  opacity: 0.8;
-
-}
-
-p {
-  font-family: "Poppins", sans-serif;
-  font-size: 1.1em;
-  font-weight: 300;
-  line-height: 1.7em;
-  color: #999;
-}
-
-.color li {
-  background-color: white !important;
-}
-
-.container {
-  font-family: "Poppins", sans-serif; 
+.indexbody {
+  background-image: url(../assets/bi.jpg);
+  background-size: cover;
 }
