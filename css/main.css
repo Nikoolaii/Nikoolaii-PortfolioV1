@@ -1,4 +1,7 @@
 .indexbody {
   background-image: url(../assets/bi.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 }
