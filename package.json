@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "tailwind": "^4.0.0"
+    "tailwind": "^4.0.0",
+    "tailwindcss-animation-delay": "^1.0.7"
   },
   "devDependencies": {
     "prettier": "^2.8.1"
