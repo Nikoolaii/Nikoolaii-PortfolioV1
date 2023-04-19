@@ -1,0 +1,707 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Installation Galera</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="3f21b67c-bd80-4404-bceb-3c6de7160491" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="https://galeracluster.com/wp-content/uploads/2013/10/gc_logo_grey.png"/></div><h1 class="page-title">Installation Galera</h1></header><div class="page-body"><p id="5f1bf26b-8d69-4c69-a0d7-253f21aac7e3" class="">Pour créer une continuité avec Galera, il faut créer 3 VM qui auront ces spécificité : </p><ul id="043f4de2-04c5-46f8-a482-068908cb9f57" class="bulleted-list"><li style="list-style-type:disc">20Gb</li></ul><ul id="4eac756b-04cd-48a1-a848-37dcc7b4976e" class="bulleted-list"><li style="list-style-type:disc">1Gb ram</li></ul><p id="89050643-d491-4af7-b1b6-d4047f486dac" class="">
+</p><p id="e21696d1-3db6-4d1e-864e-c9882e69e6d1" class="">Les serveurs auront 3 ip différents : </p><ul id="7e57ab40-a869-4371-8f8b-70e7b177a76d" class="bulleted-list"><li style="list-style-type:disc">ServBDD1 : 192.168.88.152</li></ul><ul id="6e743157-1283-452b-bc09-4ba3005fedd8" class="bulleted-list"><li style="list-style-type:disc">ServBDD2 : 192.168.88.152</li></ul><ul id="9e001dc6-6dd3-4d0c-a369-61581b161fa3" class="bulleted-list"><li style="list-style-type:disc">ServBDD3 : 192.168.88.152</li></ul><p id="07e14fc1-10e0-4ff2-bf4e-3d300d8b9cc0" class="">
+</p><p id="d0595737-e3fa-47d4-978d-630f9d3ac54f" class="">Le cluster de BDD auront comme mot de passe: </p><p id="6a21ce19-be49-4508-aff3-c751490d2ff4" class="">Mot de passe root : aaa</p><p id="1f0963f6-31a9-4754-9603-1bd47b486648" class="">Mot de passe aaa (compte non admin) : aaa</p><p id="c38d567d-1013-42e0-9aa1-9d86c3faa82b" class="">
+</p><p id="69c6df3d-5339-4635-9874-d3665f5c31e7" class="">
+</p><h3 id="a4ea01c0-b1f1-4b3f-bb9b-cff0be10dc14" class="">Installation de MariaDB sur les machines</h3><p id="f6a1c849-399c-4631-9676-e7c70347ebc3" class="">Pour installer MariaDB, il faut executer cette commande dans le terminal : </p><pre id="c4c0724e-8a7e-40ae-8f9f-f078952775fa" class="code"><code>sudo apt-get install mariadb-server</code></pre><p id="238204df-632c-432f-897e-fe0980ef539d" class="">Il faut par la suite, le lancer et activer le lancement au démarrage </p><pre id="f4ed0d61-8c21-4aa7-9b04-e6cead589559" class="code"><code>sudo systemctl start mariadb
+sudo systemctl enable mariadb
+sudo systemctl status mariadb</code></pre><p id="13a1a2e4-3470-4c4e-ae53-122573029ba0" class="">Normalement galera c’est installé de base sur les machines, si c’est pas le cas il faut executer cette commande : </p><pre id="cf42dc64-2570-460c-973e-4baeb9bfcb2f" class="code"><code>sudo apt-get install mariadb-server-galera</code></pre><h3 id="36c51f92-4951-47af-8ef8-221a9293a6f0" class="">Mise en place sur le serveur 1</h3><p id="6b50c73f-c4aa-4867-b164-95b3579c0737" class="">Sur votre premier serveur, donc votre serveur principal, vous devrez executer la commande</p><pre id="f099d0f5-a0e8-44a2-88b0-fd64d3b20a71" class="code"><code>sudo nano /etc/my.cnf.d/galera.cnf</code></pre><p id="9abc0fc7-0b89-4f8b-b346-874ae7fa0296" class="">Vous devrez modifier </p><div><figure id="ff60aca8-ab7d-4098-9c89-b398f0541d50" class="image"><a href="TD%20-%20Cluster%20BDD%20galera%20bc0d8ea7ac4543bbaa00f689cbdaeb6c/Untitled.png"><img style="width:602px" src="TD%20-%20Cluster%20BDD%20galera%20bc0d8ea7ac4543bbaa00f689cbdaeb6c/Untitled.png"/></a></figure></div><div><figure id="f75ad9b0-59a4-428d-acea-3930b22aaff8" class="image"><a href="TD%20-%20Cluster%20BDD%20galera%20bc0d8ea7ac4543bbaa00f689cbdaeb6c/Untitled%201.png"><img style="width:841px" src="TD%20-%20Cluster%20BDD%20galera%20bc0d8ea7ac4543bbaa00f689cbdaeb6c/Untitled%201.png"/></a></figure></div><p id="222f2ed6-36ee-40ce-9c62-2c31d49446a9" class="">Vous devrez ensuite démarrer galera sur la VM 1 uniquement</p><pre id="9e7f4018-899c-4329-b5d1-7905234cbd09" class="code"><code>galera_new_cluster</code></pre><p id="989699f9-a2b9-4cce-81d2-a499386a6aee" class="">Vous devrez aussi ajouter les IP des autres serveurs dans le fichier conf de galera</p><div><figure id="7fd952cb-4847-4518-a8eb-27ccd1c67d06" class="image"><a href="TD%20-%20Cluster%20BDD%20galera%20bc0d8ea7ac4543bbaa00f689cbdaeb6c/Untitled%202.png"><img style="width:824px" src="TD%20-%20Cluster%20BDD%20galera%20bc0d8ea7ac4543bbaa00f689cbdaeb6c/Untitled%202.png"/></a></figure></div><p id="ed1abf15-7244-4c34-89a7-c6c126127c29" class="">Sur les autres serveur, vous allez devoir indiquer les même paramètres que sur le premier : </p><div id="7300ce3c-62a1-46e6-a61c-28a8901cf58c" class="column-list"><div id="97057b14-f828-4209-ba21-a8df93163fbb" style="width:50%" class="column"><p id="03e424cd-d9e5-45fd-be93-96b9d34e20ba" class="">Node 2 :</p><div><figure id="ff6c029a-4920-4724-80ca-0b621458759d" class="image"><a href="TD%20-%20Cluster%20BDD%20galera%20bc0d8ea7ac4543bbaa00f689cbdaeb6c/Untitled%203.png"><img style="width:835px" src="TD%20-%20Cluster%20BDD%20galera%20bc0d8ea7ac4543bbaa00f689cbdaeb6c/Untitled%203.png"/></a></figure></div><pre id="84e206af-fe0c-4d88-a167-31b00564678f" class="code"><code># Logical cluster name. Should be the same for all nodes.
+wsrep_cluster_name=&quot;cluster_alger&quot;
+
+# Group communication system handle
+wsrep_cluster_address=&quot;gcomm://192.168.88.152,192.168.88.153,192.168.88.154”
+
+# Human-readable node name (non-unique). Hostname by default.
+#wsrep_node_name=
+
+# Base replication &lt;address|hostname&gt;[:port] of the node.
+# The values supplied will be used as defaults for state transfer receiv&gt;
+# listening ports and so on. Default: address of the first network inter&gt;
+wsrep_node_address=192.168.88.153</code></pre></div><div id="7581bde3-a165-44c9-9206-572642241d20" style="width:50%" class="column"><p id="a1adca33-0c5a-4e65-a71d-6f4726a5e069" class="">Node 3 :</p><div><figure id="2a09b4a0-25e1-4e92-972c-c03391b5c57b" class="image"><a href="TD%20-%20Cluster%20BDD%20galera%20bc0d8ea7ac4543bbaa00f689cbdaeb6c/Untitled%204.png"><img style="width:288px" src="TD%20-%20Cluster%20BDD%20galera%20bc0d8ea7ac4543bbaa00f689cbdaeb6c/Untitled%204.png"/></a></figure></div><pre id="1894b794-552a-417b-943e-afcd6ac39572" class="code"><code># Logical cluster name. Should be the same for all nodes.
+wsrep_cluster_name=&quot;cluster_alger&quot;
+
+# Group communication system handle
+wsrep_cluster_address=&quot;gcomm://192.168.88.152,192.168.88.153,192.168.88.154”
+
+# Human-readable node name (non-unique). Hostname by default.
+#wsrep_node_name=
+
+# Base replication &lt;address|hostname&gt;[:port] of the node.
+# The values supplied will be used as defaults for state transfer receiving,
+# listening ports and so on. Default: address of the first network interface.
+wsrep_node_address=192.168.88.154</code></pre></div></div><hr id="a78e426d-89e9-4236-867b-dcb9089743b6"/><p id="68ad2df8-bc28-437f-950a-82af45930bec" class="">Il faut ensuite redémarrer les services MariaDB</p><pre id="8d417aa4-3702-4924-b5e5-9f1bcf2fc769" class="code"><code>sudo systemctl enable --now mariadb</code></pre><p id="59c3b594-3500-4347-9333-0b7712921313" class="">Pour vérifier la synchronisation:</p><pre id="fadd3495-7f76-4d9a-9308-3c55140a5c5e" class="code"><code>show status like &#x27;wsrep_%&#x27;</code></pre><p id="8d5db0d6-9675-4621-9142-6b969d43f8f1" class="">
+</p><p id="2bddef9b-d272-49ea-872b-ce9fb0028be6" class="">Pour finir il faut ensuite ouvrir les différents nécéssaire à l’utilisation de la BDD</p><pre id="7d0e1c16-47ce-4038-9509-3b42c389f152" class="code"><code>firewall-cmd --add-port=4567/tcp --permanent
+firewall-cmd --add-port=3306/tcp --permanent
+firewall-cmd --add-port=4444/tcp --permanent
+firewall-cmd --add-port=4568/tcp --permanent
+firewall-cmd --add-port=80/tcp --permanent
+
+firewall-cmd --reload
+firewall-cmd --list-all</code></pre><p id="9858e8da-493e-45f7-b7c0-1b4e2c05a511" class="">Voici une photo de ce à quoi ressemble un cluster galera </p><figure id="101e6a75-1df7-4633-8a7e-c6b6560fe9a6" class="image"><a href="Installation%20Galera%203f21b67cbd804404bceb3c6de7160491/Untitled.png"><img style="width:227px" src="Installation%20Galera%203f21b67cbd804404bceb3c6de7160491/Untitled.png"/></a></figure></div></article></body></html>

@@ -1,0 +1,669 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Installation HAProxy</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="9571608e-2464-4659-bb5f-c0c50b040c16" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Haproxy-logo.png"/></div><h1 class="page-title">Installation HAProxy</h1></header><div class="page-body"><h1 id="a399c467-0189-41a0-8b8a-bf6c59fc0785" class="">Table des matières</h1><ol type="1" id="de574893-7334-48d3-8dbd-2be4ed0392dc" class="numbered-list" start="1"><li>Mise en place de la continuité de service grâce au HAProxy<h2 id="ca8cfb70-174b-43fa-b3e0-a3bf76895397" class="">Mise en place des machines virtuelles pour les serveurs.</h2></li></ol><p id="af54e1aa-1037-45f9-ae90-296877fb82cc" class="">La première étape est d’utiliser un logiciel qui permet la création de machines virtuelles, ici ce sera VMWare</p><p id="42950e93-7b82-4766-b7e0-1da64e465f7e" class="">Ce qui est important dans la création de cette VM, c’est de mettre 2 accès réseau au serveur web et au serveur HAProxy.</p><figure id="64a49c5d-2cc9-4944-8d92-4f81fe13d6d5" class="image"><a href="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image1.png"><img style="width:297px" src="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image1.png"/></a></figure><p id="6864421c-b001-4bd6-a7e1-f77748a59e04" class="">Voici donc les paramètres techniques des VM.</p><p id="5682c1fa-7819-432c-8f2f-aeeb995f72c3" class="">Pour le bien ce ce TP, il est possible de créer uniquement 1 VM qui sera cloné en 2 autres VM.</p><p id="9d9ab27d-a191-4bdd-bfa5-00c7eddad027" class="">Au lancement de la machine virtuelle, il faut choisir « Install ».</p><figure id="b305199b-1dd5-4968-b28e-3537e8543347" class="image"><a href="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image2.png"><img style="width:636px" src="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image2.png"/></a></figure><p id="0d762a2c-0597-4994-837e-49af05fc20e4" class="">Après quelques choix comme celui de la langue ou de la région, vous devrez entrez les login choisis pour la connexion à votre VM, vous aurez cette page qui s’affiche, vous devrez choisir ces options :</p><figure id="ce45dbd9-e9f8-40a0-9b34-4f2fbec36845" class="image"><a href="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image3.png"><img style="width:700px" src="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image3.png"/></a></figure><p id="e9ee95d0-67b7-4bcf-993c-4cec7db61a20" class="">Une fois l’installation terminée, vous aurez cette page qui s’affiche, vous pouvez ensuite éteindre la VM et la clonée</p><figure id="fc5a7be9-743b-4b76-b40d-8c549233cc41" class="image"><a href="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image4.png"><img style="width:700px" src="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image4.png"/></a></figure><h2 id="9e436c29-e1fc-44df-8c8a-9d73bf8bf991" class="">Mise en place des serveurs apache.</h2><p id="fe0a39a7-9f31-4c38-af55-1f3ca62e0548" class="">Avant de procéder à l’installation des autres applications, on doit d’abord configurer le fichier sources.list que l’application « apt » utilise pour chercher les paquets correspondants.</p><p id="fe8fa622-f040-4d2f-a7c4-549e46f55488" class="">Le fichier sources.list, qui se trouve dans le répertoire /etc/apt/ contient les adresses des sites miroir qui hébergent ces paquets. Pour cela on utilisera l’éditeur de texte nano.</p><figure id="9ddf2b17-62f9-4d0b-80f4-5f0199fd0b3a" class="image"><a href="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image5.png"><img style="width:607px" src="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image5.png"/></a></figure><figure id="6e523d75-0f98-4808-a913-eaabf0300937" class="image"><a href="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image6.png"><img style="width:700px" src="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image6.png"/></a></figure><p id="622e4016-f80f-428e-8091-7f67f58716b4" class="">Il faut aussi attribuer une adresse ip au serveur</p><p id="b2ac43b7-b9e1-4c05-b0ab-b430b2f88246" class="">Pour cela, il vous faut entrez la commande « ip a »</p><figure id="f7f87881-c6fb-4839-81b7-a2664384e4c6" class="image"><a href="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image7.png"><img style="width:700px" src="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image7.png"/></a></figure><p id="ab81f0c7-cd76-44b6-a687-ff8b6b2bcb65" class="">Vous allez devoir récupérer les 2 nom d’interfaces et les configurer avec une ip en écrivant</p><p id="0b159d78-b23b-421f-b7c8-5473ac0ff56b" class="">« nano /etc/network/interfaces »</p><p id="137533b6-5b2a-4e90-b592-36628c01513c" class="">Et entrez ces valeurs sur la VM1 donc le serveur HAProxy :</p><figure id="10a61e0a-883c-4671-a51c-b9ffeb258631" class="image"><a href="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image8.png"><img style="width:700px" src="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image8.png"/></a></figure><p id="8464347f-5d36-4db5-bff3-50fa3c65a6e3" class="">Il faudra ensuite activer les interfaces en entrant les commandes « ifup ens33 » et « ifup ens36 »</p><p id="cbceb1c8-0a4d-4542-85d0-fa78f0f794d5" class="">Pour vérifier le bon fonctionnement, essayer avec un « ping free.fr ».</p><p id="f4e73c40-6cbd-44b0-871e-3563835b8d3c" class="">Vous pourrez alors ensuite cloner la machine virtuelle.</p><p id="27b0a8b1-9ad4-4f16-ad13-067746841e7f" class="">Ce clone deviendra donc VM2, qui sera le premier serveur web, sur celui-ci, il vous faudra exécuter un « apt install apache2 », en appuyant sur O pour valider, apache2 va donc s’installer.</p><p id="c1b5a773-7efa-4afb-b7c9-1291af20ec2d" class="">Une fois l’installation faites, vous aurez juste à cloner VM2, ce qui vous donnera VM3, une fois cela fait, vous devrez changer leurs adresses ip, grâce à la commande « nano /etc/network/interfaces » en changeant l’adresse de l’interface ens33.</p><p id="50387b0b-8234-46e5-878a-6e26b53c0713" class="">Il faudra ensuite relancer l’interface sur VM2 et VM3 en exécutant la commande « ifdown ens33 » et « ifup ens33 » sur les 2 machines.</p><p id="7db0a319-5d04-41ae-865b-74bd5b3492ed" class="">Il faut aussi préciser que les adresses ip doivent être différentes sur les 3 machines.</p><p id="cfc5bb37-2230-4b78-a383-852012307747" class="">Vous pourrez ensuite tester vos pages, pour cela en tapant la commande « ip a », vous trouverez cette ip, qui une fois entrée dans le navigateur vous affichera une page web :</p><figure id="e0b69567-0283-4e30-9175-a4a34a680d94" class="image"><a href="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image9.png"><img style="width:700px" src="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image9.png"/></a></figure><figure id="9073e9ec-e1a1-4251-8b7d-0b928d5d58cb" class="image"><a href="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image10.png"><img style="width:700px" src="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image10.png"/></a></figure><p id="d69dd192-9e8b-4711-81ed-347c65c35a1a" class="">Vous pouvez le faire sur les VM2 et VM3</p><h3 id="44d6de35-d8eb-4d8a-9d64-127e79a01c25" class="">Modifier les pages html pour différencier les serveurs.</h3><p id="f84c1168-80d5-4755-a198-04f694af17ad" class="">Il est nécessaire de modifier les pages html pour pouvoir les différencier lors du test HAProxy.</p><p id="70525a72-539d-4a83-88d9-3fd0eebc6f94" class="">Pour cela, vous allez devoir exécuter la commande « nano /var/www/html/index.html »</p><p id="6610d724-74b8-4cd5-9f4d-c52564726caa" class="">Ici vous pourrez modifier la page pour obtenir 1 affichage différent sur chacun de vos serveurs.</p><figure id="2f3a00eb-b681-4684-9bfb-3715c5419b65" class="image"><a href="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image11.png"><img style="width:700px" src="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image11.png"/></a></figure><h2 id="9f4d47ab-d29b-41a1-ac78-bf581be0ace3" class="">Mise en place du HAProxy</h2><p id="13e026ea-c14f-4d21-9c2e-3ffba0f34d09" class="">Sur la VM1, vous devrez exécuter les commandes « apt update », « apt upgrade », « apt install -y apache2 » et « apt install -y haproxy ».</p><p id="8fc0882b-dc0a-419c-8d9c-28bf10ce9589" class="">Vous devrez ensuite ajouter l’adresse ip de vos serveurs web dans :</p><p id="fdf9a219-201c-4679-a922-ce0aabfa503c" class="">« nano /etc/hosts/ »</p><figure id="97b907a5-a49b-446b-b72b-5b519c32ebea" class="image"><a href="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image12.png"><img style="width:700px" src="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image12.png"/></a></figure><p id="11e9d694-4437-4404-9a89-336358dc0a08" class="">Et ensuite aller dans la configuration de votre serveur haproxy en tapant « nano /etc/haproxy/haproxy.cfg »</p><figure id="a69ac7cd-a442-4547-81a3-c9bf784b953a" class="image"><a href="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image13.png"><img style="width:700px" src="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image13.png"/></a></figure><p id="c32e6987-549e-46ef-8414-2fdb1f41130b" class="">Vous écrivez par la suite dans le terminal du SRV1 donc le HAPRoxy « systemctl reload haproxy »</p><p id="fafbbeb2-23ae-49cc-88b9-12ce46980159" class="">Vous remarquerez donc en se connectant sur l’adresse ip de votre serveur HAProxy que si vous rafraichissez la page, le serveur sélectionné va changer</p><figure id="37e14710-5ffa-40bb-9a2e-2d0047c63bb9" class="image"><a href="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image14.png"><img style="width:700px" src="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image14.png"/></a></figure><figure id="94f675d2-885a-40aa-b7d6-b41a8ff28f7e" class="image"><a href="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image15.png"><img style="width:700px" src="Installation%20HAProxy%209571608e24644659bb5fc0c50b040c16/image15.png"/></a></figure></div></article></body></html>
